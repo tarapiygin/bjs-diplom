@@ -1,19 +1,20 @@
+'use strtict'
 const userForm = new UserForm();
 userForm.loginFormCallback = (data) => {
-  ApiConnector.login(data, responseObj => {
-    if (responseObj.success) {
+  ApiConnector.login(data, response => {
+    if (response.success) {
       document.location.reload();
     } else {
-      console.error(responseObj.data);
-    }
+      userForm.setLoginErrorMessage(response.data);
+    };
   });
 };
 userForm.registerFormCallback = (data) => {
-  ApiConnector.register(data, (responseObj) => {
-    if (responseObj.success) {
+  ApiConnector.register(data, response => {
+    if (response.success) {
       document.location.reload();
     } else {
-      console.error(responseObj.data);
-    }
+      userForm.setRegisterErrorMessage(response.data);
+    };
   });
 };
